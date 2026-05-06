@@ -15,9 +15,8 @@ export default function Footer() {
               <h4 className="text-[#ACC90B] text-xl font-bold mb-8 italic">Menüler</h4>
               <nav className="flex flex-col gap-4">
                 <Link href="/" className="hover:text-[#ACC90B] transition-colors">Anasayfa</Link>
-                <Link href="/kategori/sifir-atik-kutulari/" className="hover:text-[#ACC90B] transition-colors">Sıfır Atık Kutuları</Link>
+                <Link href="/kategori/sifir-atik-setleri" className="hover:text-[#ACC90B] transition-colors">Sıfır Atık Setleri</Link>
                 <Link href="/hakkimizda" className="hover:text-[#ACC90B] transition-colors">Hakkımızda</Link>
-                <Link href="/blog" className="hover:text-[#ACC90B] transition-colors">Blog</Link>
                 <Link href="/iletisim" className="hover:text-[#ACC90B] transition-colors">İletişim</Link>
               </nav>
             </div>
@@ -26,12 +25,12 @@ export default function Footer() {
             <div>
               <h4 className="text-[#ACC90B] text-xl font-bold mb-8 italic">Ürünler</h4>
               <nav className="flex flex-col gap-4">
-                <Link href="/kategori/sifir-atik-kutulari/" className="hover:text-[#ACC90B] transition-colors">Sıfır Atık Kutuları</Link>
-                <Link href="/kategori/geri-donusum-kutulari/" className="hover:text-[#ACC90B] transition-colors">Geri Dönüşüm Kutuları</Link>
-                <Link href="/kategori/ayakli-kulluk/" className="hover:text-[#ACC90B] transition-colors">Ayaklı Küllük</Link>
-                <Link href="/kategori/cop-kovalari/" className="hover:text-[#ACC90B] transition-colors">Çöp Kovaları</Link>
-                <Link href="/kategori/bahce-tipi-cop-kutulari/" className="hover:text-[#ACC90B] transition-colors">Bahçe Tipi Kutular</Link>
-                <Link href="/kategori/pedalli-cop-kutulari/" className="hover:text-[#ACC90B] transition-colors">Pedallı Kutular</Link>
+                <Link href="/kategori/sifir-atik-kutulari" className="hover:text-[#ACC90B] transition-colors">Sıfır Atık Kutuları</Link>
+                <Link href="/kategori/boyali-sifir-atik-kutulari" className="hover:text-[#ACC90B] transition-colors">Boyalı Kutular</Link>
+                <Link href="/kategori/paslanmaz-sifir-atik-kovalari" className="hover:text-[#ACC90B] transition-colors">Paslanmaz Kovalar</Link>
+                <Link href="/kategori/tibbi-atik-urunleri" className="hover:text-[#ACC90B] transition-colors">Tıbbi Atık Ürünleri</Link>
+                <Link href="/kategori/cop-konteynerleri" className="hover:text-[#ACC90B] transition-colors">Çöp Konteynerleri</Link>
+                <Link href="/kategori/variller" className="hover:text-[#ACC90B] transition-colors">Variller</Link>
               </nav>
             </div>
 

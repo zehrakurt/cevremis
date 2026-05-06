@@ -6,51 +6,55 @@ const productGroups = [
     id: 1,
     title: "Sıfır Atık Kutuları",
     text: "Sıfır atık kutuları, evde ve iş yerinde atıkları kaynağında ayrıştırarak çevreyi korumanın en etkili yoludur. Doğaya zarar vermeyen bu kutularla sürdürülebilir yaşama güçlü bir adım atabilirsiniz.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/08/sifir-atik-kutulari.jpg",
-    mobileImage: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/10/mobil1-1.jpg",
-    link: "/kategori/sifir-atik-kutulari/",
+    image: "/assets/setler.png",
+    link: "/kategori/sifir-atik-kutulari",
     isBig: true,
+    objectMode: "object-contain bg-[#0a0a0a]",
   },
   {
     id: 2,
-    title: "Geri Dönüşüm Kutuları",
-    text: "Geri Dönüşüm Kutuları, atıkları kaynağında ayırmanın en pratik ve görünür yoludur. Geri Dönüşüm Kutuları hem evlerde hem iş yerlerinde düzen sağlar, karışık atıkların israfını önler ve geri kazanım süreçlerini hızlandırır.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/12/geri-donusum.jpg",
-    mobileImage: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/12/mobil-kategori.webp",
-    link: "/kategori/geri-donusum-kutulari/",
+    title: "Sıfır Atık Setleri",
+    text: "Geri dönüşüm bilincini artıran ve atık yönetimini profesyonel hale getiren çok bölmeli sıfır atık setleri. Şık tasarımlarıyla ofis ve kamu alanları için ideal çözümler.",
+    image: "/assets/setler2.png",
+    link: "/kategori/sifir-atik-setleri",
     isBig: true,
+    objectMode: "object-contain bg-[#0a0a0a]",
   },
   {
     id: 3,
     title: "Çöp Kovaları",
-    text: "Çöp kovası, günlük yaşamda oluşan atıkların hijyenik ve düzenli bir şekilde toplanmasını sağlayan temel temizlik ekipmanıdır. Evlerden iş yerlerine kadar her alanda kullanılır.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/08/yanmaz-cop-kovasi-143.webp",
-    link: "/kategori/cop-kovalari/",
+    text: "Günlük yaşamda oluşan atıkların hijyenik ve düzenli bir şekilde toplanmasını sağlayan, dayanıklı ve estetik çöp kovası modelleri.",
+    image: "/assets/kovalar.png",
+    link: "/kategori/cop-kovalari",
     isBig: false,
+    objectMode: "object-cover",
   },
   {
     id: 4,
-    title: "Bahçe Tipi Çöp Kutuları",
-    text: "Bahçe tipi çöp kutuları, dış mekânlarda atıkları düzenli ve hijyenik şekilde toplamanızı sağlar. Geri dönüşüme uygun tasarımlarıyla sıfır atık hedefinize katkı sunar.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/08/bahce-tipi-cop-kutulari.jpg",
-    link: "/kategori/bahce-tipi-cop-kutulari/",
+    title: "Çöp Konteynerleri",
+    text: "Geniş kapasiteli, dış mekan şartlarına dayanıklı ve taşıma kolaylığı sağlayan tekerlekli çöp konteyneri çözümleri.",
+    image: "/assets/konteyner.png",
+    link: "/kategori/cop-konteynerleri",
     isBig: false,
+    objectMode: "object-cover",
   },
   {
     id: 5,
-    title: "Ayaklı Küllük",
-    text: "Ayaklı küllük, sigara izmaritlerinin çevreye zarar vermesini önleyen şık ve işlevsel bir çözümdür. Sıfır atık anlayışına uygun bu ürün, temiz alanlar oluşturur.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/08/ayakli-kulluk.jpg",
-    link: "/kategori/ayakli-kulluk/",
+    title: "Tıbbi Atık Ürünleri",
+    text: "Hastane ve klinik gibi sağlık kuruluşları için uluslararası standartlara uygun, güvenli tıbbi atık toplama ekipmanları.",
+    image: "/assets/tibbi.png",
+    link: "/kategori/tibbi-atik-urunleri",
     isBig: false,
+    objectMode: "object-cover",
   },
   {
     id: 6,
-    title: "Pedallı Çöp Kutuları",
-    text: "Pedallı çöp kutuları, hijyenik ve pratik kullanımıyla atık yönetimini kolaylaştırır. Ellerle temas etmeden açılabilen bu kutular, çevreci bir yaşam sunar.",
-    image: "https://www.sifiratiksepeti.com/wp-content/uploads/2025/08/pedalli.jpg",
-    link: "/kategori/pedalli-cop-kutulari/",
+    title: "Variller",
+    text: "Endüstriyel depolama ve taşıma ihtiyaçlarınız için farklı kapasitelerde, yüksek mukavemetli plastik varil modelleri.",
+    image: "/assets/varil.png",
+    link: "/kategori/variller",
     isBig: false,
+    objectMode: "object-cover",
   },
 ];
 
@@ -70,39 +74,65 @@ export default function ProductGroups() {
             <div
               key={group.id}
               className={`${
-                group.isBig ? "md:col-span-2" : "md:col-span-1"
-              } group relative overflow-hidden rounded-2xl shadow-lg h-[350px] md:h-[450px]`}
+                group.isBig 
+                  ? "md:col-span-2 flex flex-col md:flex-row bg-[#000000]" 
+                  : "md:col-span-1 relative h-[350px] md:h-[450px]"
+              } group overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:shadow-2xl`}
             >
-              {/* Image */}
-              <picture className="absolute inset-0">
-                {group.mobileImage && (
-                  <source media="(max-width: 768px)" srcSet={group.mobileImage} />
-                )}
-                <img
-                  src={group.image}
-                  alt={group.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </picture>
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-
-              {/* Text Area */}
-              <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full md:max-w-2xl text-white">
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-[#ACC90B] transition-colors">
-                  {group.title}
-                </h3>
-                <p className="text-sm md:text-base text-white/90 mb-6 line-clamp-3 md:line-clamp-none">
-                  {group.text}
-                </p>
-                <Link
-                  href={group.link}
-                  className="inline-block bg-[#ACC90B] text-[#01351F] font-bold py-3 px-8 rounded-full hover:bg-white transition-colors"
-                >
-                  Ürünleri Gör
-                </Link>
-              </div>
+              {group.isBig ? (
+                // Big Banner: Text Left, Image Right
+                <>
+                  <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-white order-2 md:order-1 bg-[#000000]">
+                    <h3 className="text-3xl md:text-4xl font-bold mb-6 group-hover:text-[#ACC90B] transition-colors uppercase tracking-tight">
+                      {group.title}
+                    </h3>
+                    <p className="text-base md:text-lg text-white/80 mb-8 font-medium leading-relaxed">
+                      {group.text}
+                    </p>
+                    <div>
+                      <Link
+                        href={group.link}
+                        className="inline-block bg-[#ACC90B] text-[#01351F] font-bold py-4 px-12 rounded-full hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg"
+                      >
+                        Ürünleri Gör
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="w-full md:w-1/2 h-64 md:h-[450px] relative order-1 md:order-2 overflow-hidden bg-[#000000]">
+                    <img
+                      src={group.image}
+                      alt={group.title}
+                      className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                </>
+              ) : (
+                // Small Banner: Overlay Design
+                <>
+                  <div className="absolute inset-0">
+                    <img
+                      src={group.image}
+                      alt={group.title}
+                      className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${group.objectMode}`}
+                    />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 p-8 md:p-12 w-full text-white">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:text-[#ACC90B] transition-colors uppercase tracking-tight">
+                      {group.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-white/90 mb-6 line-clamp-3 font-medium leading-relaxed">
+                      {group.text}
+                    </p>
+                    <Link
+                      href={group.link}
+                      className="inline-block bg-[#ACC90B] text-[#01351F] font-bold py-3 px-10 rounded-full hover:bg-white transition-all transform hover:-translate-y-1 shadow-lg"
+                    >
+                      Ürünleri Gör
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           ))}
         </div>
