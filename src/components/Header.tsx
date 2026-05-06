@@ -72,13 +72,13 @@ export default function Header() {
 
       {/* Header Bottom */}
       <div className="bg-[#01351f] py-4 border-b border-[#04150d]">
-        <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="block">
+          <Link href="/" className="block ml-[-1rem] md:ml-0">
             <img
               src="/LOGO.png"
               alt="Çevremis Logo"
-              className="h-[200px] w-auto object-contain my-[-5.5rem] relative z-10 drop-shadow-sm"
+              className="h-[120px] md:h-[200px] w-auto object-contain my-[-3rem] md:my-[-5.5rem] relative z-10 drop-shadow-sm"
             />
           </Link>
 
