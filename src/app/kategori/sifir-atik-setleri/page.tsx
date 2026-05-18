@@ -112,6 +112,7 @@ const products = [
   { id: 112, name: "mis1111 4'Lü Sıfır Atık Geri Dönüşüm Seti", image: "https://www.sifiratikkovalari.com/image/cache/catalog/urunler/sifir-atik-setleri/ucelmetal/zk-331a-min-228x228.jpg" },
   { id: 113, name: "mis1112 4'Lü Sıfır Atık Geri Dönüşüm Seti", image: "https://www.sifiratikkovalari.com/image/cache/catalog/urunler/sifir-atik-setleri/ucelmetal/zk-331b-min-228x228.png" },
   { id: 114, name: "mis1113 4'Lü Sıfır Atık Geri Dönüşüm Seti", image: "https://www.sifiratikkovalari.com/image/cache/catalog/urunler/sifir-atik-setleri/ucelmetal/zk-332a-min-228x228.png" },
+
 ];
 
 const ITEMS_PER_PAGE = 12;

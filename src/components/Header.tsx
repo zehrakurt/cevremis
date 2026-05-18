@@ -26,6 +26,7 @@ const categories = [
   { name: "Çöp Kovaları", link: "/kategori/cop-kovalari" },
   { name: "Çöp Konteynerleri", link: "/kategori/cop-konteynerleri" },
   { name: "Variller", link: "/kategori/variller" },
+  { name: "Çöp Sıkıştırıcı", link: "/kategori/trash-compactor" },
 ];
 
 export default function Header() {
