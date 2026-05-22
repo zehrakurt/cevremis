@@ -20,3 +20,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Next.js 16 dev: segment explorer injects "use client" labels into the page */
+.segment-boundary-trigger,
+.segment-boundary-trigger * {
+  display: none !important;
+  visibility: hidden !important;
+}

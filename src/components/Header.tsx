@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { categories } from "./header-categories";
 import {
@@ -8,9 +9,12 @@ import {
   PhoneIcon,
   YoutubeIcon,
 } from "./header-icons";
-import HeaderMobileNav from "./HeaderMobileNav";
 
-export default function Header() {
+type HeaderProps = {
+  mobileNav?: ReactNode;
+};
+
+export default function Header({ mobileNav }: HeaderProps) {
   return (
     <header className="w-full sticky top-0 z-50 shadow-md font-sans">
       {/* Announcement Bar */}
@@ -81,16 +85,17 @@ export default function Header() {
       </div>
 
       {/* Header Bottom */}
-      <div className="bg-[#01351f] py-4 border-b border-[#04150d]">
-        <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="block ml-[-1rem] md:ml-0">
-            <img
-              src="/LOGO.png"
-              alt="Çevremis Logo"
-              className="h-[120px] md:h-[200px] w-auto object-contain my-[-3rem] md:my-[-5.5rem] relative z-10 drop-shadow-sm"
-            />
-          </Link>
+ <div className="bg-[#01351f] py-4 border-b border-[#04150d]">
+  <div className="container mx-auto pl-0 pr-4 md:pl-2 md:pr-12 flex justify-between items-center">
+    
+    {/* Logo */}
+    <Link href="/" className="block">
+      <img
+        src="/LOGO.png"
+        alt="Çevremis Logo"
+className="h-[120px] md:h-[200px] w-auto object-contain my-[-3rem] md:my-[-5.5rem] relative z-10 drop-shadow-sm block -ml-6"      />
+    </Link>
+
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-8">
@@ -129,7 +134,7 @@ export default function Header() {
             </Link>
           </nav>
 
-          <HeaderMobileNav />
+          {mobileNav}
         </div>
       </div>
     </header>
