@@ -1,0 +1,17 @@
+export const categories = [
+  { name: "Sıfır Atık Kutuları", link: "/kategori/sifir-atik-kutulari" },
+  { name: "Boyalı Sıfır Atık Kutuları", link: "/kategori/boyali-sifir-atik-kutulari" },
+  { name: "Paslanmaz Sıfır Atık Kovaları", link: "/kategori/paslanmaz-sifir-atik-kovalari" },
+  { name: "Plastik Sıfır Atık Kovaları", link: "/kategori/plastik-sifir-atik-kovalari" },
+  { name: "İlaç ve Pil Atık Kovaları", link: "/kategori/ilac-ve-pil-atik-kovalari" },
+  { name: "Sıfır Atık Setleri", link: "/kategori/sifir-atik-setleri" },
+  { name: "Atık Getirme Merkezi", link: "/kategori/atik-getirme-merkezi" },
+  { name: "Ambalaj Atık Ürünleri", link: "/kategori/ambalaj-atik-urunleri" },
+  { name: "Tıbbi Atık Ürünleri", link: "/kategori/tibbi-atik-urunleri" },
+  { name: "Sıfır Atık Konteynerleri", link: "/kategori/sifir-atik-konteynerleri" },
+  { name: "Tekli Sıfır Atık Kovaları", link: "/kategori/tekli-sifir-atik-kovalari" },
+  { name: "Çöp Kovaları", link: "/kategori/cop-kovalari" },
+  { name: "Çöp Konteynerleri", link: "/kategori/cop-konteynerleri" },
+  { name: "Variller", link: "/kategori/variller" },
+  { name: "Çöp Sıkıştırıcı", link: "/kategori/trash-compactor" },
+];

@@ -76,8 +76,11 @@ export default function Footer() {
 
           </div>
 
-          {/* Copyright moved inside the main body */}
-          <div className="mt-16 pt-8 border-t border-white/10 text-center">
+          {/* Slogan and Copyright */}
+          <div className="mt-16 pt-8 border-t border-white/10 text-center flex flex-col items-center justify-center gap-4">
+            <p className="text-[#ACC90B] font-bold text-lg italic tracking-wider font-poppins">
+              "Çevre için Çevremis, mis gibi çevre için!"
+            </p>
             <p className="text-sm text-gray-400">
               &copy; {new Date().getFullYear()} Çevremis. Tüm Hakları Saklıdır.
             </p>
