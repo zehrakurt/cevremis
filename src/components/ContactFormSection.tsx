@@ -1,5 +1,7 @@
-import React from "react";
-import { Users } from "lucide-react";
+"use client";
+
+import React, { useState } from "react";
+import { Users, CheckCircle } from "lucide-react";
 
 const stats = [
   {
@@ -17,6 +19,8 @@ const stats = [
 ];
 
 export default function ContactFormSection() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
   return (
     <section id="home-contact-area" className="bg-[#04150D] relative min-h-[600px] flex items-center font-poppins mt-32 mb-20 py-16 lg:py-0 z-30">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -28,41 +32,89 @@ export default function ContactFormSection() {
               <h2 className="text-4xl font-bold text-[#04150D]">Sizi Arayalım!</h2>
             </div>
 
-            <form className="space-y-4">
-              <input 
-                type="text" 
-                placeholder="Adınız Soyadınız:" 
-                className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none placeholder-gray-400"
-              />
-              <input 
-                type="email" 
-                placeholder="E-Posta Adersiniz:" 
-                className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none placeholder-gray-400"
-              />
-              <div className="relative flex items-center">
-                <div className="absolute left-4 flex items-center gap-2 border-r border-gray-100 pr-3">
-                  <img src="https://flagcdn.com/w20/tr.png" alt="TR" className="w-5" />
-                  <span className="text-[13px] font-bold text-gray-600">+90</span>
-                </div>
-                <input 
-                  type="tel" 
-                  placeholder="" 
-                  className="w-full bg-white border-none rounded-md py-4 pl-20 px-5 text-sm text-gray-700 focus:outline-none"
-                />
+            {formSubmitted ? (
+              <div className="bg-white/20 rounded-[30px] p-8 text-center">
+                <CheckCircle className="w-16 h-16 text-[#04150D] mx-auto mb-4" />
+                <h4 className="text-xl font-bold text-[#04150D] mb-2">Başarıyla Gönderildi!</h4>
+                <p className="text-[#04150D]/80 text-sm">Mesajınız bize ulaştı. En kısa sürede size dönüş yapacağız.</p>
+                <button 
+                  onClick={() => setFormSubmitted(false)}
+                  className="mt-4 text-[#04150D] text-sm font-semibold hover:underline"
+                >
+                  Yeni Mesaj Gönder
+                </button>
               </div>
-              <textarea 
-                placeholder="Mesajınız:" 
-                rows={3}
-                className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none resize-none placeholder-gray-400"
-              ></textarea>
-              
-              <button 
-                type="submit" 
-                className="w-full bg-[#04150D] text-white font-bold py-4 rounded-md hover:bg-[#01351F] transition-all uppercase text-sm tracking-[3px] mt-4"
+            ) : (
+              <form 
+                id="home-contact-form"
+                className="space-y-4"
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const form = e.target as HTMLFormElement;
+                  const formData = new FormData(form);
+                  
+                  try {
+                    const response = await fetch("https://formspree.io/f/xgoqlyoj", {
+                      method: "POST",
+                      body: formData,
+                      headers: {
+                        Accept: "application/json",
+                      },
+                    });
+                    
+                    if (response.ok) {
+                      setFormSubmitted(true);
+                      form.reset();
+                    } else {
+                      alert("Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                    }
+                  } catch (error) {
+                    alert("Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                  }
+                }}
               >
-                GÖNDER
-              </button>
-            </form>
+                <input 
+                  type="text" 
+                  name="name"
+                  placeholder="Adınız Soyadınız:" 
+                  required
+                  className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none placeholder-gray-400"
+                />
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="E-Posta Adresiniz:" 
+                  required
+                  className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none placeholder-gray-400"
+                />
+                <div className="relative flex items-center">
+                  <div className="absolute left-4 flex items-center gap-2 border-r border-gray-100 pr-3">
+                    <img src="https://flagcdn.com/w20/tr.png" alt="TR" className="w-5" />
+                    <span className="text-[13px] font-bold text-gray-600">+90</span>
+                  </div>
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    placeholder="5XX XXX XX XX"
+                    className="w-full bg-white border-none rounded-md py-4 pl-20 px-5 text-sm text-gray-700 focus:outline-none"
+                  />
+                </div>
+                <textarea 
+                  name="message"
+                  placeholder="Mesajınız:" 
+                  rows={3}
+                  required
+                  className="w-full bg-white border-none rounded-md py-4 px-5 text-sm text-gray-700 focus:outline-none resize-none placeholder-gray-400"
+                ></textarea>
+                
+                <button 
+                  type="submit" 
+                  className="w-full bg-[#04150D] text-white font-bold py-4 rounded-md hover:bg-[#01351F] transition-all uppercase text-sm tracking-[3px] mt-4"
+                >
+                  GÖNDER
+                </button>
+              </form>
+            )}
           </div>
 
           {/* Stats Area */}

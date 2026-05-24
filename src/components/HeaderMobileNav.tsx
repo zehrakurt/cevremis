@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { categories } from "./header-categories";
+import { categories as staticCategories } from "./header-categories";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 function MenuIcon() {
   return (
@@ -22,6 +24,30 @@ function CloseIcon() {
 
 export default function HeaderMobileNav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [categories, setCategories] = useState<any[]>(staticCategories);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "categories"));
+        if (!snapshot.empty) {
+          const list = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+              name: data.name,
+              link: data.link || `/kategori/${data.slug}`
+            };
+          });
+          list.sort((a: any, b: any) => a.name.localeCompare(b.name));
+          setCategories(list);
+        }
+      } catch (err) {
+        console.error("Error loading categories in HeaderMobileNav:", err);
+      }
+    };
+    loadCategories();
+  }, []);
+
 
   return (
     <>

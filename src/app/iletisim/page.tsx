@@ -1,8 +1,11 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Phone, Mail, MapPin } from "lucide-react";
+import { ChevronRight, Phone, Mail, MapPin, CheckCircle } from "lucide-react";
 
 export default function Iletisim() {
+  const [formSubmitted, setFormSubmitted] = useState(false);
   return (
     <div className="font-poppins bg-[#fcfcfc]">
       {/* Banner & Breadcrumbs Header */}
@@ -108,55 +111,106 @@ export default function Iletisim() {
                     <div className="w-12 h-1 bg-[#ACC90B] mt-2"></div>
                   </div>
 
-                  <form className="space-y-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold uppercase text-white/60 ml-1">Ad Soyad</label>
-                      <input 
-                        type="text" 
-                        placeholder="Adınız Soyadınız:" 
-                        className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
-                      />
+                  {formSubmitted ? (
+                    <div className="bg-green-500/20 border border-green-500/30 rounded-3xl p-8 text-center">
+                      <CheckCircle className="w-16 h-16 text-[#ACC90B] mx-auto mb-4" />
+                      <h4 className="text-xl font-bold text-white mb-2">Başarıyla Gönderildi!</h4>
+                      <p className="text-white/80 text-sm">Mesajınız bize ulaştı. En kısa sürede size dönüş yapacağız.</p>
+                      <button 
+                        onClick={() => setFormSubmitted(false)}
+                        className="mt-4 text-[#ACC90B] text-sm font-semibold hover:underline"
+                      >
+                        Yeni Mesaj Gönder
+                      </button>
                     </div>
-                    
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold uppercase text-white/60 ml-1">E-Posta</label>
-                      <input 
-                        type="email" 
-                        placeholder="E-Mail:" 
-                        className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold uppercase text-white/60 ml-1">Telefon</label>
-                      <div className="relative flex items-center">
-                        <div className="absolute left-3 flex items-center gap-1 border-r border-white/10 pr-2">
-                          <img src="https://flagcdn.com/w20/tr.png" alt="TR" className="w-4" />
-                          <span className="text-[11px] font-bold">+90</span>
-                        </div>
+                  ) : (
+                    <form 
+                      id="contact-form"
+                      className="space-y-4"
+                      onSubmit={async (e) => {
+                        e.preventDefault();
+                        const form = e.target as HTMLFormElement;
+                        const formData = new FormData(form);
+                        
+                        try {
+                          const response = await fetch("https://formspree.io/f/xgoqlyoj", {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                              Accept: "application/json",
+                            },
+                          });
+                          
+                          if (response.ok) {
+                            setFormSubmitted(true);
+                            form.reset();
+                          } else {
+                            alert("Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                          }
+                        } catch (error) {
+                          alert("Form gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+                        }
+                      }}
+                    >
+                      <input type="hidden" name="_subject" value="Yeni İletişim Formu Mesajı" />
+                      
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold uppercase text-white/60 ml-1">Ad Soyad</label>
                         <input 
-                          type="tel" 
-                          className="w-full bg-[#04150D] border-none rounded-xl py-3 pl-16 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
+                          type="text" 
+                          name="name"
+                          placeholder="Adınız Soyadınız:" 
+                          required
+                          className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
                         />
                       </div>
-                    </div>
+                      
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold uppercase text-white/60 ml-1">E-Posta</label>
+                        <input 
+                          type="email" 
+                          name="email"
+                          placeholder="E-Mail:" 
+                          required
+                          className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
+                        />
+                      </div>
 
-                    <div className="space-y-1">
-                      <label className="text-xs font-semibold uppercase text-white/60 ml-1">Mesajınız</label>
-                      <textarea 
-                        placeholder="Mesajınız:" 
-                        rows={2}
-                        className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none resize-none"
-                      ></textarea>
-                    </div>
-                    
-                    <button 
-                      type="submit" 
-                      className="w-full bg-[#ACC90B] text-[#01351F] font-bold py-3 rounded-xl hover:bg-white transition-all uppercase text-xs tracking-widest mt-4"
-                    >
-                      GÖNDER
-                    </button>
-                  </form>
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold uppercase text-white/60 ml-1">Telefon</label>
+                        <div className="relative flex items-center">
+                          <div className="absolute left-3 flex items-center gap-1 border-r border-white/10 pr-2">
+                            <img src="https://flagcdn.com/w20/tr.png" alt="TR" className="w-4" />
+                            <span className="text-[11px] font-bold">+90</span>
+                          </div>
+                          <input 
+                            type="tel" 
+                            name="phone"
+                            placeholder="5XX XXX XX XX"
+                            className="w-full bg-[#04150D] border-none rounded-xl py-3 pl-16 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold uppercase text-white/60 ml-1">Mesajınız</label>
+                        <textarea 
+                          name="message"
+                          placeholder="Mesajınız:" 
+                          rows={2}
+                          required
+                          className="w-full bg-[#04150D] border-none rounded-xl py-3 px-4 text-sm text-white focus:ring-1 focus:ring-[#ACC90B] transition-all outline-none resize-none"
+                        ></textarea>
+                      </div>
+                      
+                      <button 
+                        type="submit" 
+                        className="w-full bg-[#ACC90B] text-[#01351F] font-bold py-3 rounded-xl hover:bg-white transition-all uppercase text-xs tracking-widest mt-4"
+                      >
+                        GÖNDER
+                      </button>
+                    </form>
+                  )}
                 </div>
               </aside>
             </div>

@@ -1,6 +1,11 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Link from "next/link";
-import { categories } from "./header-categories";
+import { categories as staticCategories } from "./header-categories";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 import {
   ChevronDownIcon,
   InstagramIcon,
@@ -15,6 +20,30 @@ type HeaderProps = {
 };
 
 export default function Header({ mobileNav }: HeaderProps) {
+  const [categories, setCategories] = useState<any[]>(staticCategories);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "categories"));
+        if (!snapshot.empty) {
+          const list = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+              name: data.name,
+              link: data.link || `/kategori/${data.slug}`
+            };
+          });
+          list.sort((a: any, b: any) => a.name.localeCompare(b.name));
+          setCategories(list);
+        }
+      } catch (err) {
+        console.error("Error loading categories in Header:", err);
+      }
+    };
+    loadCategories();
+  }, []);
+
   return (
     <header className="w-full sticky top-0 z-50 shadow-md font-sans">
       {/* Announcement Bar */}
@@ -85,17 +114,16 @@ export default function Header({ mobileNav }: HeaderProps) {
       </div>
 
       {/* Header Bottom */}
- <div className="bg-[#01351f] py-4 border-b border-[#04150d]">
-  <div className="container mx-auto pl-0 pr-4 md:pl-2 md:pr-12 flex justify-between items-center">
-    
-    {/* Logo */}
-    <Link href="/" className="block">
-      <img
-        src="/LOGO.png"
-        alt="Çevremis Logo"
-className="h-[120px] md:h-[200px] w-auto object-contain my-[-3rem] md:my-[-5.5rem] relative z-10 drop-shadow-sm block -ml-6"      />
-    </Link>
-
+      <div className="bg-[#01351f] py-4 border-b border-[#04150d]">
+        <div className="container mx-auto px-4 md:px-12 flex justify-between items-center">
+          {/* Logo */}
+          <Link href="/" className="block ml-[-5rem] md:ml-[-4rem]">
+            <img
+              src="/LOGO.png"
+              alt="Çevremis Logo"
+              className="h-[120px] md:h-[200px] w-auto object-contain my-[-3rem] md:my-[-5.5rem] relative z-10 drop-shadow-sm"
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-8">
