@@ -5,6 +5,7 @@ import { useParams } from "next/navigation";
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import Link from "next/link";
 import "../category-style.css";
 
 const ITEMS_PER_PAGE = 12;
@@ -104,7 +105,7 @@ export default function DynamicCategoryPage() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full max-w-7xl">
             {currentProducts.map((p) => (
-              <div key={p.id} className="premium-card group">
+              <Link key={p.id} href={`/urunler/${p.id}`} className="premium-card group block">
                 <div className="image-container">
                   <img
                     src={p.image}
@@ -123,7 +124,7 @@ export default function DynamicCategoryPage() {
                     {p.name}
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
